@@ -1,0 +1,4 @@
+configure_file(.gitconfig ${CMAKE_INSTALL_PREFIX} COPYONLY)
+configure_file(.bashrc ${CMAKE_INSTALL_PREFIX} COPYONLY)
+
+file(COPY .config DESTINATION ${CMAKE_INSTALL_PREFIX}/.config)

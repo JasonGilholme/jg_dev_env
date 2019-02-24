@@ -1,0 +1,18 @@
+#!/usr/bin/sh
+
+SCRIPT=$(readlink -f $0)
+DEV_ENV_ROOT=`dirname $SCRIPT`
+
+echo "export DEV_ENV_ROOT=$DEV_ENV_ROOT" >> $HOME/.bashrc
+echo 'source $DEV_ENV_ROOT/.bashrc' >> $HOME/.bashrc
+
+# vim content
+mkdir -p $HOME/.config/nvim
+ln -f -s $DEV_ENV_ROOT/.vimrc $HOME/.config/nvim/init.vim
+ln -f -s $DEV_ENV_ROOT/.vim  $HOME/.vim
+ln -f -s $DEV_ENV_ROOT/.gitconfig  $HOME/.gitconfig
+mkdir -p $HOME/.local/share/nvim/site/autoload
+ln -f -s $DEV_ENV_ROOT/.local/share/nvim/site/autoload/plug.vim $HOME/.local/share/nvim/site/autoload/plug.vim
+
+# colors
+ln -f -s $DEV_ENV_ROOT/.config/base16-shell $HOME/.config/base16-shell
