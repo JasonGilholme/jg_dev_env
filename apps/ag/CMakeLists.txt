@@ -8,7 +8,7 @@ ExternalProject_add(
     PREFIX ag
     UPDATE_COMMAND ""
     CONFIGURE_COMMAND ./autogen.sh && ./configure --prefix=${CMAKE_INSTALL_PREFIX}
-    INSTALL_COMMAND make install && ${JG_COPY_LIBS_SH} ${CMAKE_INSTALL_PREFIX} ag
+    INSTALL_COMMAND make install && ${JG_COPY_LIBS_SH} ${CMAKE_INSTALL_PREFIX} ${CMAKE_INSTALL_PREFIX}/bin/ag
     BUILD_IN_SOURCE 1
     BUILD_COMMAND make -j ${ncpus}
 )
