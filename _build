@@ -1,0 +1,10 @@
+#!/bin/bash
+
+mkdir -p /source/build
+
+cd /source/build
+cmake -DCMAKE_INSTALL_PREFIX=/build_output /source
+cmake --build .
+
+chown -R 1000:1000 /build_output
+chown -R 1000:1000 /source/build

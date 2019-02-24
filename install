@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Determine the install dir
+if [ -z $1 ]; then
+    INSTALL_DIR="$HOME/jg_dev_env"
+else
+    INSTALL_DIR=$1
+fi
+
+mkdir -p $INSTALL_DIR
+echo Install Dir: $INSTALL_DIR
+
+# Build all the applications
+docker run -it -v `pwd`:/source -v $INSTALL_DIR:/build_output --entrypoint=/source/_build dev-env-builder:centos
+
+# Hook it up to the users bashrc
+cd $INSTALL_DIR
+pwd
+./install
