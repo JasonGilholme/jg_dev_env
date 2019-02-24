@@ -8,7 +8,7 @@ ExternalProject_add(
     PREFIX highlight
     UPDATE_COMMAND ""
     CONFIGURE_COMMAND ""
-    INSTALL_COMMAND make PREFIX=${CMAKE_INSTALL_PREFIX} data_dir=${CMAKE_INSTALL_PREFIX}/.highlight conf_dir=${CMAKE_INSTALL_PREFIX}/.highlight install && ${JG_COPY_LIBS_SH} ${CMAKE_INSTALL_PREFIX} ${CMAKE_INSTALL_PREFIX}/bin/highlight
+    INSTALL_COMMAND make PREFIX=${CMAKE_INSTALL_PREFIX} data_dir=${CMAKE_INSTALL_PREFIX}/.highlight/ conf_dir=${CMAKE_INSTALL_PREFIX}/.highlight/ install && ${JG_COPY_LIBS_SH} ${CMAKE_INSTALL_PREFIX} ${CMAKE_INSTALL_PREFIX}/bin/highlight
     BUILD_IN_SOURCE 1
-    BUILD_COMMAND make PREFIX=${CMAKE_INSTALL_PREFIX} data_dir=${CMAKE_INSTALL_PREFIX}/.highlight conf_dir=${CMAKE_INSTALL_PREFIX}/.highlight -j ${ncpus}
+    BUILD_COMMAND make PREFIX=${CMAKE_INSTALL_PREFIX} data_dir=${CMAKE_INSTALL_PREFIX}/.highlight/ conf_dir=${CMAKE_INSTALL_PREFIX}/.highlight/ -j ${ncpus}
 )

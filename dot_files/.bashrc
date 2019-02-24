@@ -67,7 +67,7 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 bind -x '"\C-f": fzf'
 
 # Highlight
-export HIGHLIGHT_DATADIR=$DEV_ENV_ROOT/highlight/
+export HIGHLIGHT_DATADIR=$DEV_ENV_ROOT/.highlight/
 
 # Screensaver
 alias ss='pipes.sh -p 10 -r 0 -R'
