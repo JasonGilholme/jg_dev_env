@@ -15,5 +15,8 @@ add_subdirectory(pipes)
 add_subdirectory(screen)
 add_subdirectory(tree)
 
+# Terminals
+add_subdirectory(kitty)
+
 # Editors
 add_subdirectory(neovim)

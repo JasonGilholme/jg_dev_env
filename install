@@ -11,7 +11,7 @@ mkdir -p $INSTALL_DIR
 echo Install Dir: $INSTALL_DIR
 
 # Build all the applications
-docker run -it -v `pwd`:/source -v $INSTALL_DIR:/build_output --entrypoint=/source/_build dev-env-builder:centos
+docker run -it -v `pwd`:/source -v $INSTALL_DIR:/build_output --entrypoint=/source/_build jg-dev-env-build-env:centos
 
 # Hook it up to the users bashrc
 # cd $INSTALL_DIR

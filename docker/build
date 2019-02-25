@@ -3,5 +3,5 @@ set -e
 
 cd $(dirname $0)
 
-docker build -f ./dockerfile -t dev-env-build-env:centos ./
+docker build -f ./dockerfile -t jg-dev-env-build-env:centos ./
 
