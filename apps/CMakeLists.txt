@@ -8,3 +8,9 @@ add_subdirectory(fzf)
 add_subdirectory(git)
 add_subdirectory(highlight)
 add_subdirectory(htop)
+
+
+
+
+
+add_subdirectory(neovim)
