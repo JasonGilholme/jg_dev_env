@@ -46,7 +46,6 @@ export LS_COLORS="rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;
 # git
 export GIT_EXEC_PATH=$DEV_ENV_ROOT/libexec/git-core
 export GIT_TEMPLATE_DIR=~
-alias glog="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
 
 # pyenv
 export PYENV_ROOT=$DEV_ENV_ROOT/pyenv/
