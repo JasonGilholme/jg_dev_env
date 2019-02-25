@@ -4,10 +4,12 @@ add_subdirectory(pyenv)
 
 # Apps
 add_subdirectory(ag)
+add_subdirectory(cmake)
 add_subdirectory(fzf)
 add_subdirectory(git)
 add_subdirectory(highlight)
 add_subdirectory(htop)
+add_subdirectory(tree)
 
 
 
