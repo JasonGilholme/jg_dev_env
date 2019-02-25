@@ -56,6 +56,9 @@ export PATH=$PYENV_ROOT/shims:$PATH
 export PATH=$DEV_ENV_ROOT/go/bin:$PATH
 export GOPATH=$DEV_ENV_ROOT/go/vendor:$GOPATH
 
+# rust
+export PATH=$DEV_ENV_ROOT/rust/bin:$PATH
+
 # vim
 alias vim='PYENV_VERSION=3.6.8 nvim'
 
