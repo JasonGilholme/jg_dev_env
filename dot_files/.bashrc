@@ -70,7 +70,8 @@ bind -x '"\C-f": fzf'
 export HIGHLIGHT_DATADIR=$DEV_ENV_ROOT/.highlight/
 
 # Screensaver
-alias ss='pipes.sh -p 10 -r 0 -R'
+alias ssp='pipes.sh -p 10 -r 0 -R'
+alias ssm='cmatrix -abs -u 2'
 
 if command -v pyenv 1>/dev/null 2>&1; then
     eval "$(pyenv init -)"
