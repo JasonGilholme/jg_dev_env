@@ -1,6 +1,6 @@
 # Languages
 add_subdirectory(golang)
-# add_subdirectory(pyenv)
+add_subdirectory(pyenv)
 
 # Apps
 add_subdirectory(ag)
