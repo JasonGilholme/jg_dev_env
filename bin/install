@@ -6,6 +6,9 @@ DEV_ENV_ROOT=`dirname $SCRIPT`
 echo "export DEV_ENV_ROOT=$DEV_ENV_ROOT" >> $HOME/.bashrc
 echo 'source $DEV_ENV_ROOT/.bashrc' >> $HOME/.bashrc
 
+# TODO: Try to find a way to not require these symlinks and dirs.  
+#       The smaller the footprint in the home directory the better.
+
 # vim content
 mkdir -p $HOME/.config/nvim
 ln -f -s $DEV_ENV_ROOT/.vimrc $HOME/.config/nvim/init.vim
