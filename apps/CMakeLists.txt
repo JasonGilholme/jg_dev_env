@@ -14,6 +14,7 @@ add_subdirectory(highlight)
 add_subdirectory(htop)
 add_subdirectory(pipes)
 add_subdirectory(screen)
+add_subdirectory(tmux)
 add_subdirectory(tree)
 
 # Terminals

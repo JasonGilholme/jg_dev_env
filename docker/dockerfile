@@ -22,3 +22,4 @@ RUN yum install -y boost-devel lua-devel
 RUN yum install -y freetype-devel 
 RUN yum install -y harfbuzz-devel 
 RUN yum install -y fontconfig-devel 
+RUN yum install -y libevent-devel 
