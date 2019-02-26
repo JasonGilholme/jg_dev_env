@@ -1,12 +1,14 @@
 # terminal colour scheme
 export TERM='xterm-256color'
 
+THEME_NAME='snazzy'
+
 BASE16_SHELL="$HOME/.config/base16-shell/"
 [ -n "$PS1" ] && \
     [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
         eval "$("$BASE16_SHELL/profile_helper.sh")"
 
-eval 'base16_snazzy'
+eval "base16_$THEME_NAME"
 
 # prefer dev env binaries
 export PATH=$DEV_ENV_ROOT/bin:$PATH
@@ -14,7 +16,11 @@ export PATH=$DEV_ENV_ROOT/bin:$PATH
 # prefer system libs
 export LD_LIBRARY_PATH=/lib64:$LD_LIBRARY_PATH:$DEV_ENV_ROOT/lib
 
+# Get to the code quickly - set $DEV_ROOT in host system .bashrc 
+alias d="cd $DEV_ROOT"
+
 # Common aliases
+alias cat="highlight $1 -q --force --out-format=xterm256 --base16 -s $THEME_NAME"
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias grep='grep --color=auto'
@@ -28,6 +34,9 @@ alias mkdir='mkdir -pv'
 alias c='clear'
 
 # cd shortcuts
+# todo: cdf should accept an optional root dir arg
+# todo: cdf shouldn't cd if fzf returns a non zero exit code
+alias cdf='cd $(fd -t d | fzf --preview-window=right:hidden)'
 alias cd..='cd ..'
 alias .='cd ..'
 alias .2='cd ../../'
@@ -63,8 +72,10 @@ export PATH=$DEV_ENV_ROOT/rust/bin:$PATH
 alias vim='PYENV_VERSION=3.6.8 nvim'
 
 # fzf
-export FZF_DEFAULT_OPTS='--height=70% --preview="highlight -q --force --out-format=xterm256 --base16 -s snazzy {}" --preview-window=right:70% --bind up:preview-up,down:preview-down'
-export FZF_DEFAULT_COMMAND='ag -l -g "" --no-color'
+export FZF_DEFAULT_OPTS="--height=70% --preview=\"highlight -q --force --out-format=xterm256 --base16 -s $THEME_NAME {}\" --preview-window=right:70% --bind up:preview-up,down:preview-down"
+export FZF_DEFAULT_COMMAND='ag -l -g "" --no-color --hidden --ignore-dir .git'
+
+
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 bind -x '"\C-f": fzf'
 
@@ -75,7 +86,7 @@ export HIGHLIGHT_DATADIR=$DEV_ENV_ROOT/.highlight/
 export PATH=$DEV_ENV_ROOT/kitty/bin:$PATH
 
 # Screensaver
-alias ssp='pipes.sh -p 10 -r 0 -R && base16_snazzy'
+alias ssp="pipes.sh -p 10 -r 0 -R && base16_$THEME_NAME"
 alias ssm='cmatrix -abs -u 2 -C blue'
 alias ss='ssm'
 
