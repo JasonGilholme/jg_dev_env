@@ -1,9 +1,11 @@
+#!/bin/sh
+
 # terminal colour scheme
 export TERM='xterm-256color'
 
-THEME_NAME='snazzy'
+export THEME_NAME='snazzy'
 
-BASE16_SHELL="$HOME/.config/base16-shell/"
+BASE16_SHELL="$DEV_ENV_ROOT/.config/base16-shell/"
 [ -n "$PS1" ] && \
     [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
         eval "$("$BASE16_SHELL/profile_helper.sh")"
@@ -32,11 +34,12 @@ alias mv='mv -iv'
 alias rm='rm -iv'
 alias mkdir='mkdir -pv'
 alias c='clear'
+alias x='exit'
 
 # cd shortcuts
 # todo: cdf should accept an optional root dir arg
 # todo: cdf shouldn't cd if fzf returns a non zero exit code
-alias cdf='cd $(fd -t d | fzf --preview-window=right:hidden)'
+alias cdf='cd $(fd -t d --hidden | fzf --preview-window=right:hidden)'
 alias cd..='cd ..'
 alias .='cd ..'
 alias .2='cd ../../'
@@ -54,12 +57,14 @@ export LS_COLORS="rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;
 
 # git
 export GIT_EXEC_PATH=$DEV_ENV_ROOT/libexec/git-core
-export GIT_TEMPLATE_DIR=~
+export GIT_TEMPLATE_DIR=$DEV_ENV_ROOT/share/git-core/templates
 
 # pyenv
 export PYENV_ROOT=$DEV_ENV_ROOT/pyenv/
 export PATH=$PYENV_ROOT/bin:$PATH
 export PATH=$PYENV_ROOT/shims:$PATH
+alias black='PYENV_VERSION=3.6.8 python $DEV_ENV_ROOT/pyenv/versions/3.6.8/bin/black'
+alias futurize='PYENV_VERSION=3.6.8 python $DEV_ENV_ROOT/pyenv/versions/3.6.8/bin/futurize'
 
 # go
 export PATH=$DEV_ENV_ROOT/go/bin:$PATH
@@ -73,9 +78,7 @@ alias vim='PYENV_VERSION=3.6.8 nvim'
 
 # fzf
 export FZF_DEFAULT_OPTS="--height=70% --preview=\"highlight -q --force --out-format=xterm256 --base16 -s $THEME_NAME {}\" --preview-window=right:70% --bind up:preview-up,down:preview-down"
-export FZF_DEFAULT_COMMAND='ag -l -g "" --no-color --hidden --ignore-dir .git'
-
-
+export FZF_DEFAULT_COMMAND='ag -l -g "" --no-color --silent --hidden --ignore-dir .git'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 bind -x '"\C-f": fzf'
 

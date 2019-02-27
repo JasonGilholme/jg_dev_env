@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 mkdir -p /source/build
 
 cd /source/build
