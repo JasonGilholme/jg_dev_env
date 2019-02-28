@@ -32,7 +32,6 @@ let g:python3_host_prog  = $PYENV_ROOT . 'shims/python3'
 "
 set nocompatible
 set encoding=utf-8
-" set shellcmdflag=-ic                " to load the .bashrc
 set splitright 
 set splitbelow
 set mouse=a
