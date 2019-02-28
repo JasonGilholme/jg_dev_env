@@ -24,6 +24,9 @@ Plug 'jremmen/vim-ripgrep'
 
 call plug#end()
 
+let g:python_host_prog  = $PYENV_ROOT . 'shims/python'
+let g:python3_host_prog  = $PYENV_ROOT . 'shims/python3'
+
 "
 " Prefs
 "
