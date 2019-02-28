@@ -24,9 +24,6 @@ Plug 'jremmen/vim-ripgrep'
 
 call plug#end()
 
-let g:python_host_prog  = $PYENV_ROOT . 'shims/python'
-let g:python3_host_prog  = $PYENV_ROOT . 'shims/python3'
-
 "
 " Prefs
 "
@@ -61,6 +58,8 @@ set clipboard=unnamedplus       " Use system clipboard
 set completeopt-=preview        " Don't show completion preview window
 set whichwrap+=h,l              " Wrap cursor movement
 set updatetime=250              " Defaults to 4000
+set statusline+=%#warningmsg#
+set statusline+=%*
 
 "
 " Color Scheme
@@ -75,10 +74,6 @@ catch
 endtry
 hi Normal ctermbg=none
 hi NonText ctermbg=none
-
-let g:python3_host_skip_check = 1
-let g:python_host_skip_check = 1
-
 
 "
 " Keyboard Shortcuts
@@ -127,17 +122,24 @@ nnoremap <silent> <C-F><C-A><C-B> :terminal cd $(dirname %:p) && PYENV_VERSION=3
 nnoremap <silent> <C-F><C-B> :terminal PYENV_VERSION=3.6.8 python $DEV_ENV_ROOT/pyenv/versions/3.6.8/bin/black --fast %:p<CR>
 
 "
-" Autostart
+" Python Setup
 "
-function StartupFunction()
-    if argc() != 0 && exists("s:std_in")
-        " Set the current dir based on the file passed on the command line
-        :lcd%:p:h
-    endif
-endfunction
+let g:python_host_prog  = $PYENV_ROOT . 'shims/python'
+let g:python3_host_prog  = $PYENV_ROOT . 'shims/python3'
+let g:python_highlight_indent_errors = 0
+let g:python_highlight_space_errors = 0
+let g:python3_host_skip_check = 1
+let g:python_host_skip_check = 1
 
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * call StartupFunction()
+"
+" NERDTree Setup
+"
+let NERDTreeShowHidden=1
+let NERDTreeShowLineNumbers=0
+let NERDTreeWinSize = 30
+let NERDTreeWinSizeMax = 30
+let NERDTreeMinimalMenu = 1
+let NERDTreeAutoDeleteBuffer = 1
 
 "
 " Deoplete Setup
@@ -146,7 +148,6 @@ let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_smart_case = 1
 let g:deoplete#auto_completion_start_length = 0
 let g:deoplete#manual_completion_start_length = 0
-
 
 "
 " Jedi - auto complete disabled to use deoplete hook instead
@@ -199,11 +200,6 @@ function s:goyo_leave()
   hi NonText ctermbg=none
 endfunction
 
-autocmd! User GoyoLeave nested call <SID>goyo_leave()
-
-set statusline+=%#warningmsg#
-set statusline+=%*
-
 "
 " Airline Customisations
 "
@@ -221,17 +217,8 @@ let g:airline_section_error = ""
 nnoremap <silent> <C-p> :FZF<CR>
 
 "
-" Python Syntax
-"
-let g:python_highlight_indent_errors = 0
-let g:python_highlight_space_errors = 0
-
-autocmd BufWinEnter,WinEnter term://* startinsert
-autocmd BufEnter * if IsTerminal() | :startinsert | endif
-autocmd TermOpen * setlocal nonumber norelativenumber
-
-
 " Terminal toggling
+"
 nnoremap <silent> <M-CR> :call ShowTerminalPanel()<CR>
 tnoremap <silent> <M-CR> <C-\><C-N>:call CloseTerminalPanel()<CR>
 
@@ -265,3 +252,19 @@ function ShowTerminalPanel()
     :startinsert
 endfunction
 
+"
+" Autostart
+"
+function StartupFunction()
+    if argc() != 0 && exists("s:std_in")
+        " Set the current dir based on the file passed on the command line
+        :lcd%:p:h
+    endif
+endfunction
+
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * call StartupFunction()
+autocmd User GoyoLeave nested call <SID>goyo_leave()
+autocmd BufWinEnter,WinEnter term://* startinsert
+autocmd BufEnter * if IsTerminal() | :startinsert | endif
+autocmd TermOpen * setlocal nonumber norelativenumber
