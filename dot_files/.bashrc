@@ -5,7 +5,7 @@ export TERM='xterm-256color'
 
 export THEME_NAME='snazzy'
 
-BASE16_SHELL="$DEV_ENV_ROOT/.config/base16-shell/"
+export BASE16_SHELL="$DEV_ENV_ROOT/base16-shell/"
 [ -n "$PS1" ] && \
     [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
         eval "$("$BASE16_SHELL/profile_helper.sh")"

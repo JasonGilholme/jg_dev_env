@@ -1,5 +1,3 @@
 configure_file(.gitconfig ${CMAKE_INSTALL_PREFIX} COPYONLY)
 configure_file(.bashrc ${CMAKE_INSTALL_PREFIX} COPYONLY)
 configure_file(.vimrc ${CMAKE_INSTALL_PREFIX} COPYONLY)
-
-file(COPY ${CMAKE_CURRENT_LIST_DIR}/.config DESTINATION ${CMAKE_INSTALL_PREFIX})

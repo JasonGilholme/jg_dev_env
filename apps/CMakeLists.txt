@@ -5,6 +5,7 @@ add_subdirectory(rust)
 
 # Apps
 add_subdirectory(ag)
+add_subdirectory(base16-shell)
 add_subdirectory(cmake)
 add_subdirectory(cmatrix)
 add_subdirectory(ctags)
