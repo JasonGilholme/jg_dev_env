@@ -1,12 +1,11 @@
 #!/usr/bin/env python
 
-from __future__ import print_function
 import glob
 import os
 
 install_dir = os.path.dirname(os.path.abspath(__file__))
 
-print(("Re-writing shebangs with install dir:", install_dir))
+print("Re-writing shebangs with install dir:", install_dir)
 
 # Remap shebangs to match the install dir
 exe_files = []
