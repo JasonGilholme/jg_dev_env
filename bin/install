@@ -3,7 +3,8 @@
 SCRIPT=$(readlink -f $0)
 DEV_ENV_ROOT=`dirname $SCRIPT`
 
-echo "export DEV_ENV_ROOT=$DEV_ENV_ROOT" >> $HOME/.bashrc
+echo "export DEV_ENV_ROOT=$DEV_ENV_ROOT" >> $HOME/.bash_profile
+echo 'source $DEV_ENV_ROOT/.bash_profile' >> $HOME/.bash_profile
 echo 'source $DEV_ENV_ROOT/.bashrc' >> $HOME/.bashrc
 
 # TODO: Try to find a way to not require these symlinks and dirs.  
@@ -20,3 +21,5 @@ ln -f -s $DEV_ENV_ROOT/.local/share/nvim/site/autoload/plug.vim $HOME/.local/sha
 
 # git config
 ln -f -s $DEV_ENV_ROOT/.gitconfig  $HOME/.gitconfig
+
+/usr/bin/python ./install.py

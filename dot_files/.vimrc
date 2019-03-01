@@ -74,6 +74,8 @@ catch
 endtry
 hi Normal ctermbg=none
 hi NonText ctermbg=none
+" Hide the ornaments at the end of the buffer
+hi EndOfBuffer ctermfg=black ctermbg=black  
 
 "
 " Keyboard Shortcuts
@@ -115,11 +117,21 @@ nnoremap <silent> <S-F9> :NERDTreeFind<CR>
 nnoremap <silent> <F10> :TagbarToggle<CR>
 nnoremap <silent> <F11> :Goyo<CR>
 
-nnoremap <silent> <C-F><C-A><C-F> :terminal cd $(dirname %:p) && PYENV_VERSION=3.6.8 python $DEV_ENV_ROOT/pyenv/versions/3.6.8/bin/futurize -1 -w `git rev-parse --show-toplevel`<CR>
-nnoremap <silent> <C-F><C-F> :terminal PYENV_VERSION=3.6.8 python $DEV_ENV_ROOT/pyenv/versions/3.6.8/bin/futurize -1 -w %:p<CR>
 
-nnoremap <silent> <C-F><C-A><C-B> :terminal cd $(dirname %:p) && PYENV_VERSION=3.6.8 python $DEV_ENV_ROOT/pyenv/versions/3.6.8/bin/black --fast `git rev-parse --show-toplevel`<CR>
-nnoremap <silent> <C-F><C-B> :terminal PYENV_VERSION=3.6.8 python $DEV_ENV_ROOT/pyenv/versions/3.6.8/bin/black --fast %:p<CR>
+
+" nnoremap <silent> <C-F><C-A><C-F> :terminal cd $(dirname %:p) && PYENV_VERSION=3.6.8 python $DEV_ENV_ROOT/pyenv/versions/3.6.8/bin/futurize -1 -w `git rev-parse --show-toplevel`<CR>
+" nnoremap <silent> <C-F><C-F> :terminal PYENV_VERSION=3.6.8 python $DEV_ENV_ROOT/pyenv/versions/3.6.8/bin/futurize -1 -w %:p<CR>
+" 
+" nnoremap <silent> <C-F><C-A><C-B> :terminal cd $(dirname %:p) && PYENV_VERSION=3.6.8 python $DEV_ENV_ROOT/pyenv/versions/3.6.8/bin/black --fast `git rev-parse --show-toplevel`<CR>
+" nnoremap <silent> <C-F><C-B> :terminal PYENV_VERSION=3.6.8 python $DEV_ENV_ROOT/pyenv/versions/3.6.8/bin/black --fast %:p<CR>
+
+
+
+nnoremap <silent> <C-F><C-A><C-F> :terminal cd $(dirname %:p) && futurize -1 -w `git rev-parse --show-toplevel`<CR>
+nnoremap <silent> <C-F><C-F> :terminal futurize -1 -w %:p<CR>
+
+nnoremap <silent> <C-F><C-A><C-B> :terminal cd $(dirname %:p) && black --fast `git rev-parse --show-toplevel`<CR>
+nnoremap <silent> <C-F><C-B> :terminal black --fast %:p<CR>
 
 "
 " Python Setup

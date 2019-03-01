@@ -16,7 +16,7 @@ echo Install Dir: $INSTALL_DIR
 
 # Build the build environment
 cd docker
-docker build -f ./dockerfile -t jg-dev-env-build-env:centos ./
+docker build -f ./centos.dockerfile -t jg-dev-env-build-env:centos ./
 
 # Build the toolset in the build environment
 cd ../

@@ -15,7 +15,7 @@ ln -f -s $1/.vim  $HOME/.vim
 ln -f -s $1/.local/share/nvim/site/autoload/plug.vim $HOME/.local/share/nvim/site/autoload/plug.vim
 
 # Make pyenv available
-export PYENV_ROOT=$DEV_ENV_ROOT/pyenv/
+export PYENV_ROOT=$1/pyenv/
 export PATH=$PYENV_ROOT/bin:$PATH
 export PATH=$PYENV_ROOT/shims:$PATH
 eval "$(pyenv init -)"
