@@ -9,7 +9,7 @@ ExternalProject_add(
     PREFIX kitty
     UPDATE_COMMAND ""
     CONFIGURE_COMMAND ""
-    INSTALL_COMMAND cp -rv ./ ${CMAKE_INSTALL_PREFIX}/kitty
+    INSTALL_COMMAND cp -rv ./ ${CMAKE_INSTALL_PREFIX}/kitty && ${JG_COPY_LIBS_SH} ${CMAKE_INSTALL_PREFIX} ${CMAKE_INSTALL_PREFIX}/kitty/bin/kitty
     BUILD_IN_SOURCE 1
     BUILD_COMMAND tar Jxvf ../kitty-0.13.3-x86_64.txz
 )
