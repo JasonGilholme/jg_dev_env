@@ -1,0 +1,18 @@
+#!/bin/sh
+
+# Determine the input file type and preview the file in a nice way
+
+if [[ -z "$1" ]]; then
+    return
+fi   
+
+
+S=`file --mime "$1"`
+
+if [[ $S == *" image/"* ]]; then
+    ((termpix $1 --width 50 --true-color > /tmp/termpixdump && cat /tmp/termpixdump) || cat {}) 2> /dev/null
+elif [[ $S == *"=binary" ]]; then
+    ldd $1 | highlight -q --force --syntax=bash --out-format=xterm256 --base16 -s $THEME_NAME 
+else
+    highlight -q --force --out-format=xterm256 --base16 -s $THEME_NAME $1
+fi
