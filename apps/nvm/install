@@ -1,0 +1,27 @@
+#!/bin/sh
+
+set -e
+
+export NVM_DIR="$1/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" 
+
+nvm install 10.15.2
+nvm install 8.15.1
+nvm install 6.17.0
+
+# Install libs into each node install
+nvm use 10
+npm install -g create-react-app express vue eslint eslint-config-airbnb eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react
+
+nvm use 8
+npm install -g create-react-app express vue eslint eslint-config-airbnb eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react
+
+nvm use 6
+npm install -g create-react-app express vue eslint eslint-config-airbnb eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react
+
+nvm use system
+
+# copy the linked libs over
+$2 $1 $1/nvm/versions/node/v10.15.2/bin/node
+$2 $1 $1/nvm/versions/node/v8.15.1/bin/node
+$2 $1 $1/nvm/versions/node/v6.17.0/bin/node

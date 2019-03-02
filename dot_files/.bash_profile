@@ -38,6 +38,9 @@ export PATH=$DEV_ENV_ROOT/kitty/bin:$PATH
 # Rez
 export PATH=$DEV_ENV_ROOT/rez/bin/rez:$PATH
 
+# nvm
+export NVM_DIR="$DEV_ENV_ROOT/nvm"
+
 # pyenv
 export PYENV_ROOT=$DEV_ENV_ROOT/pyenv/
 export PATH=$PYENV_ROOT/bin:$PATH

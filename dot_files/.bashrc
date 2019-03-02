@@ -57,3 +57,5 @@ source $DEV_ENV_ROOT/rez/completion/complete.sh
 
 alias cat='hlcat'
 alias icat='kitty +kitten icat'
+
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" 

@@ -1,0 +1,4 @@
+#!/bin/sh
+
+# Copy to install location
+cp -rv ./ $1/nvm
