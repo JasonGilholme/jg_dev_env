@@ -1,5 +1,5 @@
 # Languages
-add_subdirectory(pyenv)
+# add_subdirectory(pyenv)
 add_subdirectory(golang)
 add_subdirectory(rust)
 
@@ -19,6 +19,7 @@ add_subdirectory(pipes)
 add_subdirectory(rez)
 add_subdirectory(rg)
 add_subdirectory(screen)
+add_subdirectory(termpix)
 add_subdirectory(tmux)
 add_subdirectory(tree)
 
