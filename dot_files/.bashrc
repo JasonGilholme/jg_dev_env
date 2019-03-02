@@ -55,3 +55,5 @@ alias ss='ssm'
 # Rez
 source $DEV_ENV_ROOT/rez/completion/complete.sh
 
+alias cat='hlcat'
+alias icat='kitty +kitten icat'
