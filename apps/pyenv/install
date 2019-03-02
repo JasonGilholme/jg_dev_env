@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 # Make it available
 export PYENV_ROOT=$1/pyenv
 export PATH=$PYENV_ROOT/bin:$PATH
@@ -7,7 +9,7 @@ eval "$(pyenv init -)"
 
 # Install python libs
 export PYENV_VERSION=3.6.8
-pip install future black pynvim numpy scipy requests flask pymongo pika
+pip install future black pynvim numpy scipy requests flask pymongo pika awscli
 
 export PYENV_VERSION=2.7.15
 pip install pynvim numpy scipy requests flask pymongo pika 
