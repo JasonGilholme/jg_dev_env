@@ -8,7 +8,7 @@ ExternalProject_add(
     PREFIX rust
     UPDATE_COMMAND ""
     CONFIGURE_COMMAND ""
-    INSTALL_COMMAND ""
+    INSTALL_COMMAND ${JG_COPY_LIBS_SH} ${CMAKE_INSTALL_PREFIX} ${CMAKE_INSTALL_PREFIX}/rust/bin/cargo
     BUILD_IN_SOURCE 1
     BUILD_COMMAND ./install.sh --prefix=${CMAKE_INSTALL_PREFIX}/rust/
 )

@@ -8,3 +8,5 @@ add_subdirectory(bin)
 add_subdirectory(dot_files)
 
 add_subdirectory(apps)
+
+add_subdirectory(lib)
