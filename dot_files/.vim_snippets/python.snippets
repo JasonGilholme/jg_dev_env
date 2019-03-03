@@ -1,0 +1,15 @@
+
+snippet pvar "print variable" b
+print("${1:variable} = {0}".format($1))
+endsnippet
+
+snippet logvar "log variable" b
+logger.${1:level}("${2:variable} = %s", $2)
+endsnippet
+
+snippet logger "get logger" b
+import logging
+
+logger = logging.getLogger(__name__)
+endsnippet
+
