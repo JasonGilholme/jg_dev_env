@@ -72,8 +72,8 @@ try
     endif
 catch
 endtry
-hi Normal ctermbg=none
-hi NonText ctermbg=none
+hi Normal ctermbg=black
+hi NonText ctermbg=black
 " Hide the ornaments at the end of the buffer
 hi EndOfBuffer ctermfg=black ctermbg=black  
 
@@ -113,7 +113,7 @@ tnoremap <expr> <C-L> IsTerminal() ? "\<C-\>\<C-N>\<C-W>l" : "\<C-L>"
 tnoremap <expr> <Esc> IsTerminal() ? "\<C-\>\<C-n>" : "\<Esc>"
 
 nnoremap <silent> <expr> <F9> g:NERDTree.IsOpen() ? "\:NERDTreeClose<CR>" : "\:NERDTree<CR>"
-nnoremap <silent> <S-F9> :NERDTreeFind<CR>
+nnoremap <silent> <Leader><F9> :NERDTreeFind<CR>
 nnoremap <silent> <F10> :TagbarToggle<CR>
 nnoremap <silent> <F11> :Goyo<CR>
 
@@ -172,6 +172,7 @@ let g:echodoc_type = 'echo'
 "
 let g:UltiSnipsExpandTrigger = "<C-Y>"
 let g:ultisnips_python_style = "google"
+let g:UltiSnipsSnippetDirectories = [$DEV_ENV_ROOT . "/.vim_snippets/"]
 
 "
 " ALE Settings
@@ -198,8 +199,8 @@ let g:ale_python_black_options = "--fast"
 " Goyo Settings
 "
 function s:goyo_leave()
-  hi Normal ctermbg=none
-  hi NonText ctermbg=none
+  hi Normal ctermbg=black
+  hi NonText ctermbg=black
 endfunction
 
 "
