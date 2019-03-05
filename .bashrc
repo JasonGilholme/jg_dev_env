@@ -1,3 +1,12 @@
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
+
+
+# Source all the bash profiles for the apps
+for f in ./apps/*/.bashrc; do source $f; done
 
 # Get to the code quickly - set $DEV_ROOT in host system .bashrc 
 alias d="cd $DEV_ROOT"
@@ -32,8 +41,3 @@ alias .7='cd ../../../../../../../'
 alias .8='cd ../../../../../../../../'
 alias .9='cd ../../../../../../../../../'
 alias .10='cd ../../../../../../../../../../'
-
-alias ss='ssm'
-
-alias cat='hlcat'
-alias icat='kitty +kitten icat'

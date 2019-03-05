@@ -1,0 +1,9 @@
+#!/bin/sh
+
+cp -rv go $1/go
+
+export PATH=$1/go/bin:$1/go/vendor/bin:$PATH
+export GOPATH=$1/go/vendor:$GOPATH
+
+go get -v golang.org/x/tools/...
+go get -v golang.org/x/lint/golint

@@ -7,8 +7,10 @@ ExternalProject_add(
     URL https://github.com/git/git/archive/v2.21.0.tar.gz
     PREFIX git
     UPDATE_COMMAND ""
-    CONFIGURE_COMMAND autoconf && ./configure --prefix=${CMAKE_INSTALL_PREFIX}
-    INSTALL_COMMAND make install && ${JG_COPY_LIBS_SH} ${CMAKE_INSTALL_PREFIX} ${CMAKE_INSTALL_PREFIX}/bin/git && cp contrib/completion/git-completion.bash ${CMAKE_INSTALL_PREFIX}/.git-completion.sh
+    CONFIGURE_COMMAND autoconf && ./configure --prefix=${CMAKE_INSTALL_PREFIX}/apps/git
+    INSTALL_COMMAND make install &&
+        cp contrib/completion/git-completion.bash ${CMAKE_INSTALL_PREFIX}/apps/git/share/git-completion.sh &&
+        ${JG_INSTALL_APP_SH} ${CMAKE_CURRENT_LIST_DIR} ${CMAKE_INSTALL_PREFIX}/apps/git
     BUILD_IN_SOURCE 1
     BUILD_COMMAND make -j ${ncpus}
 )

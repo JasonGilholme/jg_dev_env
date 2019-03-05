@@ -23,3 +23,7 @@ RUN yum install -y freetype-devel
 RUN yum install -y harfbuzz-devel 
 RUN yum install -y fontconfig-devel 
 RUN yum install -y libevent-devel 
+
+RUN yum install -y vte291-devel gtk3-devel gsettings-desktop-schemas-devel dconf-devel pcre2-devel
+
+RUN yum install -y cairo-devel 
