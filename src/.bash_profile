@@ -20,6 +20,7 @@ export LS_COLORS="rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;
 
 # Source all the bash profiles for the apps
 for f in $DEV_ENV_ROOT/apps/*/.bash_profile; do source $f; done
+source $DEV_ENV_ROOT/scripts/.bash_profile
 
 export PATH=$DEV_ENV_PATH:$OG_PATH
 export LD_LIBRARY_PATH=/lib64:$OG_LIB_PATH:$DEV_ENV_LIB_PATH

@@ -7,12 +7,13 @@ fi
 
 # Source all the bash profiles for the apps
 for f in $DEV_ENV_ROOT/apps/*/.bashrc; do source $f; done
+source $DEV_ENV_ROOT/scripts/.bashrc
 
 # Get to the code quickly - set $DEV_ROOT in host system .bashrc 
 alias d="cd $DEV_ROOT"
 
 # Common aliases
-alias cat="highlight $1 -q --force --out-format=xterm256 --base16 -s $THEME_NAME"
+# alias cat="highlight $1 -q --force --out-format=xterm256 --base16 -s $THEME_NAME"
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias grep='grep --color=auto'
