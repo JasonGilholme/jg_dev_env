@@ -1,8 +1,11 @@
 #!/bin/sh
 
-for p in `cat ./.pythonrc`; do
-    echo $p
-    export PYTHONPATH=$PYTHONPATH:`pwd`/$p
+for r in `find . -name .pythonrc`; do
+    echo $r
+    for p in `cat $r`; do
+        echo $p
+        export PYTHONPATH=$PYTHONPATH:`pwd`/$p
+    done
 done
 
 echo $PYTHONPATH
