@@ -1,1 +1,1 @@
-export NVM_DIR="$DEV_ENV_ROOT/nvm"
+export NVM_DIR="$DEV_ENV_ROOT/apps/nvm"

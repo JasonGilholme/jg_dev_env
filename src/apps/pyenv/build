@@ -1,7 +1,8 @@
 #!/bin/sh
 
-# Copy to install location
+set -e
 
+# Copy to install location
 mkdir -p $1/apps/pyenv
 cp -rv ./ $1/apps/pyenv
 
@@ -13,3 +14,4 @@ eval "$(pyenv init -)"
 # Install python version
 pyenv install 3.6.8
 pyenv install 2.7.15
+pyenv install stackless-3.5.4

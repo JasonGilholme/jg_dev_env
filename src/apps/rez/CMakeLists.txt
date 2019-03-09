@@ -8,7 +8,7 @@ ExternalProject_add(
     PREFIX rez
     UPDATE_COMMAND ""
     CONFIGURE_COMMAND ""
-    INSTALL_COMMAND ""
+    INSTALL_COMMAND ${JG_INSTALL_APP_SH} ${CMAKE_CURRENT_LIST_DIR} ${CMAKE_INSTALL_PREFIX}/apps/rez
     BUILD_IN_SOURCE 1
-    BUILD_COMMAND python ./install.py -v ${CMAKE_INSTALL_PREFIX}/rez 
+    BUILD_COMMAND python ./install.py -v ${CMAKE_INSTALL_PREFIX}/apps/rez 
 )

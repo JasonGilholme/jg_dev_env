@@ -1,0 +1,5 @@
+#!/bin/sh
+
+set -e
+
+ln -f -s $DEV_ENV_ROOT/apps/nvm/.eslintrc.js  $HOME/.eslintrc.js

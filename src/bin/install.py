@@ -9,11 +9,15 @@ print("Re-writing shebangs with install dir:", install_dir)
 
 # Remap shebangs to match the install dir
 exe_files = []
-exe_files.extend(glob.glob(install_dir + "/bin/*"))
-exe_files.extend(glob.glob(install_dir + "/pyenv/versions/*/bin/*"))
-exe_files.extend(glob.glob(install_dir + "/rez/bin/rez/*"))
+exe_files.extend(glob.glob(install_dir + "/apps/*/bin/*"))
+exe_files.extend(glob.glob(install_dir + "/apps/pyenv/versions/*/bin/*"))
+exe_files.extend(glob.glob(install_dir + "/apps/rez/bin/rez/*"))
 
 for exe_file in exe_files:
+    print(exe_file)
+    if not os.path.isfile(exe_file):
+        continue
+
     with open(exe_file, 'r') as infile:
         data = infile.readlines()
     
