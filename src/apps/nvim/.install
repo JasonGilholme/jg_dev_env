@@ -1,0 +1,14 @@
+#!/usr/bin/sh
+
+set -e
+
+# Config
+mkdir -p $HOME/.config/nvim
+ln -f -s $DEV_ENV_ROOT/apps/nvim/.vimrc $HOME/.config/nvim/init.vim
+
+# Plug manager
+mkdir -p $HOME/.local/share/nvim/site/autoload
+ln -f -s $DEV_ENV_ROOT/apps/nvim/plug.vim $HOME/.local/share/nvim/site/autoload/plug.vim
+
+# Plugins
+ln -f -s $DEV_ENV_ROOT/apps/nvim/.vim  $HOME/.vim

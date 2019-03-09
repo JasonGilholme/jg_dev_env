@@ -20,7 +20,7 @@ docker build -f ./centos.dockerfile -t jg-dev-env-build-env:centos ./
 
 # Build the toolset in the build environment
 cd ../
-docker run -it -v `pwd`:/source -v $INSTALL_DIR:/build_output --entrypoint=/source/_build jg-dev-env-build-env:centos
+docker run -it -v `pwd`:/source -v $INSTALL_DIR:/build_output --entrypoint=/source/docker/build jg-dev-env-build-env:centos
 
 # Hook it up to the users bashrc
 # cd $INSTALL_DIR

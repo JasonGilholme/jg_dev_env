@@ -1,0 +1,12 @@
+#!/bin/sh
+
+set -e
+
+export PATH=$1/apps/rust/bin:$PATH
+
+cargo build --release
+cargo install --path ./
+
+mkdir -p $1/apps/fd/bin
+
+cp ~/.cargo/bin/fd $1/apps/fd/bin/fd

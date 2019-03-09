@@ -1,0 +1,2 @@
+export PYENV_ROOT=$DEV_ENV_ROOT/apps/pyenv/
+export DEV_ENV_PATH=$PYENV_ROOT/bin:$DEV_ENV_PATH
