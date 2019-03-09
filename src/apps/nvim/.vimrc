@@ -12,6 +12,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'w0rp/ale', { 'tag': 'v2.3.0' }
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins', 'tag': '4.1' }
 Plug 'zchee/deoplete-jedi', { 'for': 'python' }
+Plug 'davidhalter/jedi-vim'
 Plug 'Shougo/echodoc.vim'
 Plug 'majutsushi/tagbar', { 'tag': 'v2.7' }
 Plug 'sheerun/vim-polyglot', { 'tag': 'v3.3.2' }
@@ -199,6 +200,7 @@ let g:ale_linters = {
 \    'go': ['golint'],
 \    'python': ['pylint'],
 \}
+let g:ale_python_pylint_options = '-j 0'
 let g:ale_javascript_eslint_use_global = 1
 let g:ale_python_black_use_global = 1
 let g:ale_python_black_options = "--fast"

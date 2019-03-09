@@ -4,6 +4,7 @@ ProcessorCount(ncpus)
 
 configure_file(.vimrc ${CMAKE_INSTALL_PREFIX}/apps/nvim/ COPYONLY)
 configure_file(custom_snippets/python.snippets ${CMAKE_INSTALL_PREFIX}/apps/nvim/custom_snippets/python.snippets COPYONLY)
+configure_file(./vim ${CMAKE_INSTALL_PREFIX}/apps/nvim/bin COPYONLY)
 
 ExternalProject_add(
     nvim
