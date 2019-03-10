@@ -22,6 +22,7 @@ Plug 'junegunn/fzf', { 'tag': '0.17.5', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'jremmen/vim-ripgrep'
+Plug 'Rip-Rip/clang_complete'  
 
 call plug#end()
 
@@ -164,6 +165,17 @@ let g:jedi#popup_on_dot = 0
 let g:jedi#popup_select_first = 0
 let g:jedi#show_call_signatures = 0
 let g:jedi#smart_auto_mappings = 0
+
+"
+" Clang Complete
+"
+au FileType c,cpp,objc,objcpp,h setl omnifunc=clang_complete#ClangComplete
+let g:clang_complete_auto = 0
+let g:clang_auto_select = 0
+let g:clang_omnicppcomplete_compliance = 0
+let g:clang_make_default_keymappings = 0
+let g:clang_library_path = $DEV_ENV_ROOT . "/apps/llvm/lib/libclang.so"
+nnoremap <leader>d :call g:ClangGotoDeclaration()<cr>
 
 "
 " Echodoc

@@ -6,6 +6,13 @@ export PATH=$1/apps/nvim/bin:$PATH
 
 curl -fLo $1/apps/nvim/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
+mkdir -p $1/apps/nvim/bin
+mkdir -p $1/apps/nvim/custom_snippets
+
+cp -v $2/.vimrc $1/apps/nvim/.vimrc
+cp -v $2/custom_snippets/python.snippets $1/apps/nvim/custom_snippets/python.snippets
+cp -v $2/vim $1/apps/nvim/bin/vim
+
 # Hook up vim dirs
 mkdir -p $1/apps/nvim/.vim/plugged
 mkdir -p $HOME/.config/nvim
