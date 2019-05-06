@@ -2,29 +2,50 @@
 
 import glob
 import os
+import stat
 
-install_dir = os.path.dirname(os.path.abspath(__file__))
+def main():
+    install_dir = os.path.dirname(os.path.abspath(__file__))
 
-print("Re-writing shebangs with install dir:", install_dir)
+    exe_files = _find_executable_files(install_dir)
+    _re_write_shebangs(exe_files, install_dir)
 
-# Remap shebangs to match the install dir
-exe_files = []
-exe_files.extend(glob.glob(install_dir + "/apps/*/bin/*"))
-exe_files.extend(glob.glob(install_dir + "/apps/pyenv/versions/*/bin/*"))
-exe_files.extend(glob.glob(install_dir + "/apps/rez/bin/rez/*"))
 
-for exe_file in exe_files:
-    print(exe_file)
-    if not os.path.isfile(exe_file):
-        continue
+def _find_executable_files(directory):
+    exe_files = []
+    for root, _, files in os.walk(directory):
+        for file in files:
+            full_path = os.path.join(root, file)
 
-    with open(exe_file, 'r') as infile:
-        data = infile.readlines()
-    
-    shebang = data[0]
-    if shebang.startswith('#!/build_output/'):
-        shebang = shebang.replace('#!/build_output/', '#!' + install_dir + '/')
-        data[0] = shebang
-        with open(exe_file, 'w') as outfile:
-            outfile.writelines(data)
+            s = os.stat(full_path)
+            if s.st_mode & stat.S_IXOTH:
+                exe_files.append(full_path)
 
+    return exe_files
+
+
+def _re_write_shebangs(files, install_dir):
+    for file in files:
+        if not os.path.isfile(file):
+            continue
+
+        with open(file, "r") as infile:
+            data = infile.readlines()
+
+        if not data:
+            continue
+
+        shebang = data[0]
+        if shebang.startswith("#!") and "/apps/" in shebang:
+            shebang_parts = shebang.split("/apps/", 1)
+            new_shebang = "#!" + install_dir + "/apps/" + shebang_parts[1]
+            
+            if shebang != new_shebang:
+                print("Re-writing shebang: ", file)
+                data[0] = new_shebang
+                with open(file, 'w') as outfile:
+                    outfile.writelines(data)
+
+
+if __name__ == '__main__':
+    main()
