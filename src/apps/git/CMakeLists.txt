@@ -12,7 +12,7 @@ ExternalProject_add(
     CONFIGURE_COMMAND autoconf && ./configure --prefix=${CMAKE_INSTALL_PREFIX}/apps/git
     INSTALL_COMMAND make install &&
         cp contrib/completion/git-completion.bash ${CMAKE_INSTALL_PREFIX}/apps/git/share/git-completion.sh &&
-        ${JG_INSTALL_APP_SH} ${CMAKE_CURRENT_LIST_DIR} ${CMAKE_INSTALL_PREFIX}/apps/git
+        ${JG_INSTALL_APP_SH} ${CMAKE_CURRENT_LIST_DIR} ${CMAKE_INSTALL_PREFIX} git
     BUILD_IN_SOURCE 1
     BUILD_COMMAND make -j ${ncpus}
 )
