@@ -2,13 +2,13 @@
 
 set -e
 
-export PYENV_ROOT=$1/pyenv
+export PYENV_ROOT=$1/apps/pyenv
 export PATH=$PYENV_ROOT/bin:$PATH
 eval "$(pyenv init -)"
 
 # Install python libs
 export PYENV_VERSION=2.7.15
 
-pip install psutil PyGObject PyGTK 
+pip install psutil
 
-python ./setup.py install --prefix $1 --exec-prefix $1
+python ./setup.py install --prefix $1/apps/terminator --exec-prefix $1/apps/terminator

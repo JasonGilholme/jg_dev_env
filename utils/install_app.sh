@@ -27,11 +27,3 @@ if [ -f $BASH_RC ]; then
     cp -v $BASH_RC $INSTALL_DIR/apps/$APP_NAME/.bashrc
 fi
 
-cd $INSTALL_DIR
-mkdir -p _archives
-
-pwd
-ls -la
-zip -yr _archives/$APP_NAME.zip apps/$APP_NAME
-
-

@@ -22,6 +22,22 @@ docker build -f ./centos.dockerfile -t jg-dev-env-build-env:centos ./
 cd ../
 docker run -it -v `pwd`:/source -v $INSTALL_DIR:/build_output --entrypoint=/source/docker/build jg-dev-env-build-env:centos
 
+
+cd $INSTALL_DIR
+# for APP_NAME in `ls ./apps`;
+#     do zip -yr ./apps/$APP_NAME.zip ./apps/$APP_NAME && rm -rf ./apps/$APP_NAME/;
+# done
+
+BASE_FILES="./.bashrc
+./.bash_profile
+./install
+./install.py
+./scripts"
+
+zip -yr ./jg_dev_env.zip $BASE_FILES
+
+rm -rf $BASE_FILES
+
 # Hook it up to the users bashrc
 # cd $INSTALL_DIR
 # ./install

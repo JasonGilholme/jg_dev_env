@@ -26,9 +26,9 @@ add_subdirectory(rez)
 add_subdirectory(rg)
 add_subdirectory(robo3t)
 add_subdirectory(screen)
-# add_subdirectory(terminator)
+add_subdirectory(terminator)
 add_subdirectory(termpix)
-# add_subdirectory(tmux)
+add_subdirectory(tmux)
 add_subdirectory(tree)
 
 # Terminals
