@@ -1,0 +1,1 @@
+ zip -yr $APP_NAME.zip apps/$APP_NAME

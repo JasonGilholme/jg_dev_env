@@ -1,6 +1,7 @@
 #!/bin/sh
 
 set -e
+exit
 
 # Make it available
 export PYENV_ROOT=$1/apps/pyenv
@@ -8,8 +9,5 @@ export PATH=$PYENV_ROOT/bin:$PATH
 eval "$(pyenv init -)"
 
 # Install python libs
-export PYENV_VERSION=3.6.8
-pip install future black pynvim numpy scipy requests flask pymongo pika awscli pylint pyflakes pytest
-
-export PYENV_VERSION=2.7.15
-pip install pynvim numpy scipy requests flask pymongo pika pylint pyflakes pytest
+export PYENV_VERSION=3.7.4
+pip install future black pynvim pylint pyflakes pytest python-language-server[all] pyls-mypy

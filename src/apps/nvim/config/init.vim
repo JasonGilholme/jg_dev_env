@@ -1,30 +1,49 @@
+
+source $JG_DEV_ENV_ROOT/apps/nvim/config/plugs.vim
+
+
+
 "
 " Plugins
 "
-call plug#begin('~/.vim/plugged')
+" call plug#begin('~/.vim/plugged')
+" 
+" Plug 'prabirshrestha/asyncomplete.vim'
+" Plug 'prabirshrestha/asyncomplete-lsp.vim'
+" Plug 'prabirshrestha/async.vim'
+" Plug 'prabirshrestha/vim-lsp'
+" 
+" Plug 'scrooloose/nerdtree'
+" Plug 'tpope/vim-fugitive', { 'tag': 'v2.5' }
+" Plug 'airblade/vim-gitgutter'
+" Plug 'vim-airline/vim-airline', { 'tag': 'v0.10' }
+" Plug 'chriskempson/base16-vim'
+" Plug 'vim-airline/vim-airline-themes'
+" " Plug 'w0rp/ale', { 'tag': 'v2.3.0' }
+" " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" " Plug 'zchee/deoplete-jedi', { 'for': 'python' }
+" " Plug 'davidhalter/jedi-vim'
+" " Plug 'Shougo/echodoc.vim'
+" Plug 'majutsushi/tagbar', { 'tag': 'v2.7' }
+" " Plug 'SirVer/ultisnips'
+" " Plug 'honza/vim-snippets'
+" Plug 'junegunn/fzf', { 'tag': '0.17.5', 'do': './install --bin' }
+" Plug 'junegunn/fzf.vim'
+" Plug 'jremmen/vim-ripgrep'
+" 
+" call plug#end()
 
-Plug 'scrooloose/nerdtree'
-Plug 'tpope/vim-fugitive', { 'tag': 'v2.5' }
-Plug 'airblade/vim-gitgutter'
-Plug 'vim-airline/vim-airline', { 'tag': 'v0.10' }
-Plug 'chriskempson/base16-vim'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'w0rp/ale', { 'tag': 'v2.3.0' }
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins', 'tag': '4.1' }
-Plug 'zchee/deoplete-jedi', { 'for': 'python' }
-Plug 'davidhalter/jedi-vim'
-Plug 'Shougo/echodoc.vim'
-Plug 'majutsushi/tagbar', { 'tag': 'v2.7' }
-Plug 'sheerun/vim-polyglot', { 'tag': 'v3.3.2' }
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
-Plug 'junegunn/fzf', { 'tag': '0.17.5', 'do': './install --bin' }
-Plug 'junegunn/fzf.vim'
-Plug 'junegunn/goyo.vim'
-Plug 'jremmen/vim-ripgrep'
-Plug 'Rip-Rip/clang_complete'  
+if executable('pyls')
+    " pip install python-language-server
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'pyls',
+        \ 'cmd': {server_info->['pyls']},
+        \ 'whitelist': ['python'],
+        \ })
+endif
 
-call plug#end()
+
+let g:lsp_virtual_text_enabled = 1
 
 "
 " Prefs
@@ -39,7 +58,7 @@ set softtabstop=0
 set expandtab 
 set shiftwidth=4 
 set smarttab
-set hlsearch
+" set hlsearch
 set number
 set textwidth=0
 set colorcolumn=80
@@ -57,7 +76,7 @@ set ignorecase
 set showcmd
 set cmdheight=2                 " For echodoc to function
 set clipboard=unnamedplus       " Use system clipboard
-set completeopt-=preview        " Don't show completion preview window
+" set completeopt-=preview        " Don't show completion preview window
 set whichwrap+=h,l              " Wrap cursor movement
 set updatetime=250              " Defaults to 4000
 set statusline+=%#warningmsg#
@@ -67,17 +86,21 @@ set statusline+=%*
 " Color Scheme
 "
 let base16colorspace=256
-try
-    let theme_name = "base16-" . $THEME_NAME
-    if !exists('g:colors_name') || g:colors_name != theme_name
-        :exe ("colorscheme " . theme_name)
-    endif
-catch
-endtry
-hi Normal ctermbg=black
-hi NonText ctermbg=black
-" Hide the ornaments at the end of the buffer
-hi EndOfBuffer ctermfg=black ctermbg=black  
+let theme_name = "base16-" . $THEME_NAME
+if !exists('g:colors_name') || g:colors_name != theme_name
+    :exe ("colorscheme " . theme_name)
+endif
+" try
+"     let theme_name = "base16-" . $THEME_NAME
+"     if !exists('g:colors_name') || g:colors_name != theme_name
+"         :exe ("colorscheme " . theme_name)
+"     endif
+" catch
+" endtry
+" hi Normal ctermbg=black
+" hi NonText ctermbg=black
+" " Hide the ornaments at the end of the buffer
+" hi EndOfBuffer ctermfg=black ctermbg=black  
 
 
 
@@ -149,33 +172,15 @@ let NERDTreeMinimalMenu = 1
 let NERDTreeAutoDeleteBuffer = 1
 
 "
-" Deoplete Setup
-"
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#enable_smart_case = 1
-let g:deoplete#auto_completion_start_length = 0
-let g:deoplete#manual_completion_start_length = 0
-
-"
-" Jedi - auto complete disabled to use deoplete hook instead
-"
-let g:jedi#auto_vim_configuration = 0
-let g:jedi#completions_enabled = 0
-let g:jedi#popup_on_dot = 0
-let g:jedi#popup_select_first = 0
-let g:jedi#show_call_signatures = 0
-let g:jedi#smart_auto_mappings = 0
-
-"
 " Clang Complete
 "
-au FileType c,cpp,objc,objcpp,h setl omnifunc=clang_complete#ClangComplete
-let g:clang_complete_auto = 0
-let g:clang_auto_select = 0
-let g:clang_omnicppcomplete_compliance = 0
-let g:clang_make_default_keymappings = 0
-let g:clang_library_path = $DEV_ENV_ROOT . "/apps/llvm/lib/libclang.so"
-nnoremap <leader>d :call g:ClangGotoDeclaration()<cr>
+" au FileType c,cpp,objc,objcpp,h setl omnifunc=clang_complete#ClangComplete
+" let g:clang_complete_auto = 0
+" let g:clang_auto_select = 0
+" let g:clang_omnicppcomplete_compliance = 0
+" let g:clang_make_default_keymappings = 0
+" let g:clang_library_path = $DEV_ENV_ROOT . "/apps/llvm/lib/libclang.so"
+" nnoremap <leader>d :call g:ClangGotoDeclaration()<cr>
 
 "
 " Echodoc
@@ -193,29 +198,70 @@ let g:UltiSnipsSnippetDirectories = [$DEV_ENV_ROOT . "/apps/nvim/custom_snippets
 "
 " ALE Settings
 "
-hi ALEError guibg=none ctermbg=none cterm=undercurl guisp=IndianRed
-hi ALEWarning guibg=none ctermbg=none cterm=undercurl guisp=Orange3
+
+
+" let g:deoplete#enable_at_startup = 1
+
+" call deoplete#custom#source('ale', 'rank', 999)
+
+
+" hi ALEError guibg=none ctermbg=none cterm=undercurl guisp=IndianRed
+" hi ALEWarning guibg=none ctermbg=none cterm=undercurl guisp=Orange3
+
+" set completeopt=menu,menuone,preview,noselect,noinsert
+" let g:ale_completion_enabled = 1
 
 let g:ale_lint_on_text_changed = 0
-let g:ale_lint_on_insert_leave = 0
+let g:ale_lint_on_insert_leave = 1
 let g:ale_lint_on_enter = 1
 let g:ale_lint_on_save = 1
 let g:ale_lint_on_filetype_changed = 0
 
+let g:ale_set_balloons = 1
+let g:ale_open_list = 0
 let g:ale_set_loclist = 0
-let g:ale_set_quickfix = 0
+let g:ale_set_quickfix = 1
 let g:ale_set_signs = 1
 let g:ale_fix_on_save = 1
 let g:ale_fixers = {'go': ['gofmt'], 'javascript': ['eslint']}
+let g:ale_linters_explicit = 1
 let g:ale_linters = {
 \    'javascript': ['eslint'],
 \    'go': ['golint'],
-\    'python': ['pylint'],
+\    'python': ['pyls'],
 \}
-let g:ale_python_pylint_options = '-j 0'
 let g:ale_javascript_eslint_use_global = 1
-let g:ale_python_black_use_global = 1
-let g:ale_python_black_options = "--fast"
+" let g:ale_python_pylint_options = '-j 0'
+" let g:ale_python_black_use_global = 1
+" let g:ale_python_black_options = "--fast"
+" let g:ale_python_mypy_use_global = 1
+" let g:ale_python_mypy_options = "-2"
+
+let g:ale_python_pyls_use_global = 1
+let g:ale_python_pyls_options = "--tcp"
+
+"
+" Deoplete Setup
+"
+" let g:deoplete#enable_at_startup = 1
+" let g:deoplete#enable_smart_case = 1
+" let g:deoplete#auto_completion_start_length = 0
+" let g:deoplete#manual_completion_start_length = 0
+" let g:deoplete#sources#jedi#enable_typeinfo = 1
+" let g:deoplete#sources#jedi#show_docstring = 1
+" Use ALE and also some plugin 'foobar' as completion sources for all code.
+" call deoplete#custom#option('sources', {
+" \ '_': ['ale'],
+" \})
+"
+" Jedi - auto complete disabled to use deoplete hook instead
+"
+" let g:jedi#auto_vim_configuration = 0
+" let g:jedi#completions_enabled = 0
+" let g:jedi#popup_on_dot = 0
+" let g:jedi#popup_select_first = 0
+" let g:jedi#show_call_signatures = 0
+" let g:jedi#smart_auto_mappings = 0
 
 "
 " Goyo Settings
@@ -277,6 +323,31 @@ function ShowTerminalPanel()
     :startinsert
 endfunction
 
+
+highlight lspReference ctermbg=240 guibg=240
+
+highlight LspErrorText cterm=italic ctermfg=9 gui=italic guifg=9 ctermbg=none guibg=none
+highlight LspWarningText cterm=italic ctermfg=17 gui=italic guifg=17 ctermbg=none guibg=none
+
+
+highlight Comment cterm=italic gui=italic
+
+" highlight link LspWarningText Comment
+" highlight link LspErrorText Comment
+" highlight link LspInformationText Comment
+" highlight link LspHintText Comment
+
+
+highlight LspErrorHighlight ctermbg=1 guibg=1
+highlight LspWarningHighlight ctermbg=17 guibg=17
+highlight LspInformationHighlight ctermbg=4 guibg=4
+highlight LspHintHighlight ctermbg=4 guibg=4
+" cterm=undercurl guisp=IndianRed
+"     `LspErrorHighlight`, `LspWarningHighlight`, `LspInformationHighlight` and
+"     LspHintHighlight` highlight groups.
+" hi ALEError guibg=none ctermbg=none cterm=undercurl guisp=IndianRed
+" hi ALEWarning guibg=none ctermbg=none cterm=undercurl guisp=Orange3
+
 "
 " Autostart
 "
@@ -293,3 +364,7 @@ autocmd User GoyoLeave nested call <SID>goyo_leave()
 autocmd BufWinEnter,WinEnter term://* startinsert
 autocmd BufEnter * if IsTerminal() | :startinsert | endif
 autocmd TermOpen * setlocal nonumber norelativenumber
+
+
+
+

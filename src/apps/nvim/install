@@ -2,32 +2,50 @@
 
 set -e
 
-export PATH=$1/apps/nvim/bin:$PATH
+echo "RUNNING THIS BUILD PART NOW!"
 
-curl -fLo $1/apps/nvim/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+INSTALL_DIR=$1/apps/nvim/.vim/plugins
 
-mkdir -p $1/apps/nvim/bin
-mkdir -p $1/apps/nvim/custom_snippets
-
-cp -v $2/.vimrc $1/apps/nvim/.vimrc
-cp -v $2/custom_snippets/python.snippets $1/apps/nvim/custom_snippets/python.snippets
-cp -v $2/vim $1/apps/nvim/bin/vim
-
-# Hook up vim dirs
-mkdir -p $1/apps/nvim/.vim/plugged
-mkdir -p $HOME/.config/nvim
-mkdir -p $HOME/.local/share/nvim/site/autoload
-ln -f -s $1/apps/nvim/.vimrc $HOME/.config/nvim/init.vim
-ln -f -s $1/apps/nvim/.vim  $HOME/.vim
-ln -f -s $1/apps/nvim/plug.vim $HOME/.local/share/nvim/site/autoload/plug.vim
-
-# Make pyenv available
-export PYENV_ROOT=$1/apps/pyenv/
-export PATH=$PYENV_ROOT/bin:$PATH
-export PATH=$PYENV_ROOT/shims:$PATH
-eval "$(pyenv init -)"
+mkdir -p $INSTALL_DIR
+cd $INSTALL_DIR
 
 
-echo $PATH
+
+# export PATH=$1/apps/nvim/bin:$PATH
+# 
+
+# Install vim-plug directly into the nvim install to avoid
+# having to get it into the users home directory
+curl -fLo $1/apps/nvim/share/nvim/runtime/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+# 
+# mkdir -p $1/apps/nvim/bin
+# mkdir -p $1/apps/nvim/custom_snippets
+# 
+# cp -v $2/.vimrc $1/apps/nvim/.vimrc
+# cp -v $2/custom_snippets/python.snippets $1/apps/nvim/custom_snippets/python.snippets
+# cp -v $2/vim $1/apps/nvim/bin/vim
+# 
+# # Hook up vim dirs
+# mkdir -p $1/apps/nvim/.vim/plugged
+# mkdir -p $HOME/.config/nvim
+# mkdir -p $HOME/.local/share/nvim/site/autoload
+# ln -f -s $1/apps/nvim/.vimrc $HOME/.config/nvim/init.vim
+# ln -f -s $1/apps/nvim/.vim  $HOME/.vim
+# ln -f -s $1/apps/nvim/plug.vim $HOME/.local/share/nvim/site/autoload/plug.vim
+# 
+# # Make pyenv available
+# export PYENV_ROOT=$1/apps/pyenv/
+# export PATH=$PYENV_ROOT/bin:$PATH
+# export PATH=$PYENV_ROOT/shims:$PATH
+# eval "$(pyenv init -)"
+# 
+#
+
+
+# Copy of the vimrc files 
+cp -rv $2/config $1/apps/nvim/
+
+mkdir -p $1/apps/nvim/share/nvim/runtime/plugins/
+
 # Install plugins
-PYENV_VERSION=3.6.8 nvim +PlugInstall +qa
+PYENV_VERSION=3.6.8 $1/apps/nvim/bin/nvim -u $1/apps/nvim/config/plugs.vim +PlugInstall +qa

@@ -5,7 +5,7 @@ import os
 import stat
 
 def main():
-    install_dir = os.path.dirname(os.path.abspath(__file__))
+    install_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
     exe_files = _find_executable_files(install_dir)
     _re_write_shebangs(exe_files, install_dir)

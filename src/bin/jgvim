@@ -1,0 +1,13 @@
+
+echo HELLO!
+
+SCRIPT=$(readlink -f $0)
+export JG_DEV_ENV_ROOT=`dirname $SCRIPT`/../
+
+export LD_LIBRARY_PATH=/usr/lib:/usr/lib64
+
+# Source all the bash profiles for the apps
+for f in $JG_DEV_ENV_ROOT/apps/*/.bashrc; do source $f; done
+
+runjgvim $@
+

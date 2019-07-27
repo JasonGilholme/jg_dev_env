@@ -2,13 +2,16 @@
 
 SCRIPT=$(readlink -f $0)
 DEV_ENV_ROOT=`dirname $SCRIPT`
+echo "jgvim () {
+    /bin/bash --norc --noprofile $DEV_ENV_ROOT/jgvim \$@
+}" >> $HOME/.bashrc
 
-echo "export DEV_ENV_ROOT=$DEV_ENV_ROOT" >> $HOME/.bash_profile
-echo 'source $DEV_ENV_ROOT/.bash_profile' >> $HOME/.bash_profile
-echo 'source $DEV_ENV_ROOT/.bashrc' >> $HOME/.bashrc
 
+# echo 'source $DEV_ENV_ROOT/.bash_profile' >> $HOME/.bash_profile
+# echo 'source $DEV_ENV_ROOT/.bashrc' >> $HOME/.bashrc
 
 # Source all the bash profiles for the apps
-for f in $DEV_ENV_ROOT/apps/*/.install; do source $f; done
+# for f in $DEV_ENV_ROOT/apps/*/.install; do source $f; done
 
-# /usr/bin/python ./install.py
+# /usr/bin/python $DEV_ENV_ROOT/install.py
+
